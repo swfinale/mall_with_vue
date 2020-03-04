@@ -5,6 +5,7 @@
       <p>小米商城</p>
     </div>             
     <div class="footer-link">
+      <!-- span加竖线 -->
       <a href="https://www.imooc.com/u/1343480" target="_blank">河畔一角主页</a><span>|</span>
       <a href="https://coding.imooc.com/class/113.html" target="_blank">Vue全栈课程</a><span>|</span>
       <a href="https://coding.imooc.com/class/236.html" target="_blank">React全家桶课程</a><span>|</span>
@@ -21,7 +22,7 @@
 <style lang="scss" scoped>
   .footer{
     height:234px;
-    border-top:4px solid #FF6600;
+    border-top:4px solid #FF6600; //橙色分割线
     background-color:#333333;
     color:#999999;
     font-size:16px;
@@ -41,7 +42,7 @@
         display:inline-block;
       }
       span{
-        margin:0 10px;
+        margin:0 10px;  //上下为0，左右为10px
       }
       margin-bottom:13px;
     }
