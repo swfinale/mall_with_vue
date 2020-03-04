@@ -40,7 +40,7 @@
 import { mapActions } from 'vuex';
 export default {
   name: 'login',
-  data(){
+  data(){ //声明成局部变量。如果用':'会在各组件直接串
     return {
       username:'',
       password:'',
@@ -49,15 +49,15 @@ export default {
   },
   methods:{
     login(){
-      let { username,password } = this;
-      this.axios.post('/user/login',{
+      let { username,password } = this; //解构
+      this.axios.post('/user/login',{ //post该接口
         username,
         password
       }).then((res)=>{
-        this.$cookie.set('userId',res.id,{expires:'Session'});
+        this.$cookie.set('userId',res.id,{expires:'Session'});  //vue-cookie设置
         // this.$store.dispatch('saveUserName',res.username);
-        this.saveUserName(res.username);
-        this.$router.push({
+        this.saveUserName(res.username);  //把信息存入vuex，否则刷新后信息会丢失
+        this.$router.push({ //跳转
           name:'index',
           params:{
             from:'login'
@@ -92,7 +92,7 @@ export default {
     .container{
       height:576px;
       .login-form{
-        box-sizing: border-box;
+        box-sizing: border-box; //指定盒模型
         padding-left: 31px;
         padding-right: 31px;
         width:410px;
