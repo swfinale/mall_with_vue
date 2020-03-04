@@ -253,7 +253,7 @@
               box-shadow:0px 7px 6px 0px rgba(0, 0, 0, 0.11); //阴影
               z-index: 10;
               transition:all .5s;
-              background-color: #ffffff;
+              background-color: #ffffff;  //设置一个白的背景色，否则下面的内容会透出来
               .product{
                 position:relative;  //&:before要用绝对定位，所以这里要加相对定位
                 float:left;
