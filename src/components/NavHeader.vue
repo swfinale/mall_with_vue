@@ -128,14 +128,14 @@
         phoneList:[]
       }
     },
-    computed:{
+    computed:{  //读取要比渲染慢很多。开始渲染时，用户名不会显示，通过计算属性使其显示
       /*username(){
         return this.$store.state.username;
       },
       cartCount(){
         return this.$store.state.cartCount;
       }*/
-      ...mapState(['username','cartCount'])
+      ...mapState(['username','cartCount']) //解构  //要import {mapState} from 'vuex'
     },
     filters:{ //金额格式化
       currency(val){

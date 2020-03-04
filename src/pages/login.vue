@@ -55,7 +55,7 @@ export default {
         password
       }).then((res)=>{
         this.$cookie.set('userId',res.id,{expires:'Session'});  //vue-cookie设置
-        // this.$store.dispatch('saveUserName',res.username);
+        // this.$store.dispatch('saveUserName',res.username); //dispath
         this.saveUserName(res.username);  //把信息存入vuex，否则刷新后信息会丢失
         this.$router.push({ //跳转
           name:'index',
@@ -65,7 +65,7 @@ export default {
         });
       })
     },
-    ...mapActions(['saveUserName']),
+    ...mapActions(['saveUserName']),  //解构传的是字符串，不是变量
     register(){
       this.axios.post('/user/register',{
         username:'admin1',
