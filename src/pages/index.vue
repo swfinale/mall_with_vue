@@ -1,8 +1,11 @@
 <template>
   <div class="index">
     <div class="container">
+      <!-- 轮播图 -->
       <div class="swiper-box">
+        <!-- 左侧菜单 -->
         <div class="nav-menu">
+          <!-- 父级 -->
           <ul class="menu-wrap">
             <li class="menu-item">
               <a href="javascript:;">手机 电话卡</a>
@@ -40,6 +43,7 @@
             </li>
           </ul>
         </div>
+        <!-- 调用swiper组件 -->
         <swiper v-bind:options="swiperOption">
           <swiper-slide v-for="(item,index) in slideList" v-bind:key="index">
             <a v-bind:href="'/#/product/'+item.id"><img v-bind:src="item.img"></a>
@@ -50,6 +54,7 @@
           <div class="swiper-button-next" slot="button-next"></div>
         </swiper>
       </div>
+      <!-- 广告位 -->
       <div class="ads-box">
         <a v-bind:href="'/#/product/'+item.id" v-for="(item,index) in adsList" v-bind:key="index">
           <img v-lazy="item.img" alt="">
@@ -105,7 +110,7 @@
 <script>
   import ServiceBar from './../components/ServiceBar'
   import Modal from './../components/Modal'
-  import { swiper, swiperSlide } from 'vue-awesome-swiper'
+  import { swiper, swiperSlide } from 'vue-awesome-swiper'  //引入swiper和swiperSlide
   import 'swiper/dist/css/swiper.css'
   export default{
     name:'index',
@@ -117,24 +122,24 @@
     },
     data(){
       return {
-        swiperOption:{
+        swiperOption:{  //swiper的配置
           autoplay:true,
           loop:true,
-          effect:'cube',
+          effect:'cube',  //轮播以方块的样式进行
           cubeEffect: {
             shadowOffset: 100,
             shadowScale: 0.6
           },
           pagination: {
             el: '.swiper-pagination',
-            clickable:true
+            clickable:true  //可点击
           },
           navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
           }
         },
-        slideList:[
+        slideList:[ //轮播list
           {
             id:'42',
             img:'/imgs/slider/slide-1.jpg'
@@ -235,20 +240,20 @@
   .index{
     .swiper-box{
       .nav-menu{
-        position:absolute;
+        position:absolute;  //左侧菜单为绝对定位
         width:264px;
         height:451px;
         z-index:9;
         padding:26px 0;
-        background-color:#55585a7a;
-        box-sizing:border-box;
+        background-color:#55585a7a; //找一个有透明度的颜色
+        box-sizing:border-box;  //盒模型，这样高度就包括padding值了
         .menu-wrap{
           .menu-item{
             height:50px;
             line-height:50px;
             a{
-              position:relative;
-              display:block;
+              position:relative;  //相对定位=>相对于父标签定位
+              display:block;  //给a标签设置block，使其填满，否则横向会塌陷
               font-size:16px;
               color:#ffffff;
               padding-left:30px;
@@ -256,7 +261,7 @@
                 position:absolute;
                 right:30px;
                 top:17.5px;
-                content:' ';
+                content:' ';  //伪类占位
                 @include bgImg(10px,15px,'/imgs/icon-arrow.png');
               }
             }
@@ -301,11 +306,11 @@
         }
       }
       .swiper-container {
-        height: 451px;
+        height: 451px;  //限定轮播图的大小
         .swiper-button-prev{
-          left:274px;
+          left:274px; //是轮播图左侧的按钮显示在菜单右边
         }
-        img{
+        img{  //控制img大小。否则，在只控制了swiper-container大小的情况下，图片会截取显示
           width:100%;
           height:100%;
         }
