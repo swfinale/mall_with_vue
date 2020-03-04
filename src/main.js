@@ -23,11 +23,11 @@ axios.defaults.timeout = 8000;
 // 接口错误拦截
 axios.interceptors.response.use(function(response){
   let res = response.data;
-  let path = location.hash;
+  let path = location.hash; //获取hash路由地址(Hash模式)
   if(res.status == 0){
     return res.data;
   }else if(res.status == 10){
-    if (path != '#/index'){
+    if (path != '#/index'){ //如果不是首页，就跳转
       window.location.href = '/#/login';
     }
     return Promise.reject(res);

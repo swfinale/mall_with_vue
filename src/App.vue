@@ -22,12 +22,12 @@ export default {
     }
   },
   methods:{
-    getUser(){
+    getUser(){  //拉取用户信息
       this.axios.get('/user').then((res={})=>{
-        this.$store.dispatch('saveUserName',res.username);
+        this.$store.dispatch('saveUserName',res.username);  //保存到vuex
       })
     },
-    getCartCount(){
+    getCartCount(){ //获取购物车数量
       this.axios.get('/carts/products/sum').then((res=0)=>{
         this.$store.dispatch('saveCartCount',res);
       })
