@@ -26,7 +26,7 @@
     },
     data(){
       return {
-        isFixed:false //吸顶式要固定，默认为false
+        isFixed:false //吸顶时要固定定位，默认为false
       }
     },
     mounted(){
@@ -53,7 +53,7 @@
     background-color:$colorG;
     z-index:10;
     &.is_fixed{
-      position:fixed;
+      position:fixed;//fixed定位——相对于窗口定位；而absolute相对文档定位
       top:0;
       width:100%; //父容器宽度只有1226,fixed后要设置其宽度使其撑满
       box-shadow: 0 5px 5px $colorE;  //fixed之后加一个阴影

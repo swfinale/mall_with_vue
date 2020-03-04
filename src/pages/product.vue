@@ -1,6 +1,7 @@
 <template>
   <div class="product">
     <product-param v-bind:title="product.name">
+      <!-- 插入Product-param组件的buy插槽 -->
       <template v-slot:buy>
         <button class="btn" @click="buy">立即购买</button>
       </template>
@@ -41,9 +42,12 @@
         <p>后置960帧电影般超慢动作视频，将眨眼间的美妙展现得淋漓尽致！<br/>更能AI 精准分析视频内容，15个场景智能匹配背景音效。</p>
         <div class="video-bg" @click="showSlide='slideDown'"></div>
         <div class="video-box" v-show="showSlide">
+          <!-- 遮罩 -->
           <div class="overlay"></div>
+          <!-- 视频组件 -->
           <div class="video" v-bind:class="showSlide">
             <span class="icon-close" @click="closeVideo"></span>
+            <!-- 视频框 -->
             <video src="/imgs/product/video.mp4" muted autoplay controls="controls"></video>
           </div>
         </div>
@@ -182,9 +186,9 @@
         }
         .video-box{
           .overlay{
-            @include position(fixed);
-            background-color:#333333;
-            opacity:.4;
+            @include position(fixed); //传入fixed定位
+            background-color:#333333; //
+            opacity:.4; //透明度
             z-index:10;
           }
           @keyframes slideDown{
@@ -209,9 +213,9 @@
           }
           .video{
             position:fixed;
-            top:-50%;
-            left:50%;
-            transform:translate(-50%,-50%);
+            top:-50%; //相对于窗口位移
+            left:50%; //相对于窗口位移
+            transform:translate(-50%,-50%); //相对自身位移
             z-index:10;
             width:1000px;
             height:536px;
@@ -234,8 +238,8 @@
             video{
               width:100%;
               height:100%;
-              object-fit:cover;
-              outline:none;
+              object-fit:cover; //视频组件属性
+              outline:none; //视频组件属性
             }
           }
         }
