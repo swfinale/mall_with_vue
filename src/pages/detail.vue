@@ -1,5 +1,6 @@
 <template>
   <div class="detail">
+    <!-- 给product-param传title属性 -->
     <product-param v-bind:title="product.name"></product-param>
     <div class="wrapper">
       <div class="container clearfix">
@@ -91,7 +92,7 @@ export default{
     this.getProductInfo();
   },
   methods:{
-    getProductInfo(){
+    getProductInfo(){ //获取商品信息
       this.axios.get(`/products/${this.id}`).then((res)=>{
         this.product = res;
       })
@@ -101,7 +102,7 @@ export default{
         productId:this.id,
         selected: true
       }).then((res={cartProductVoList:0})=>{
-        this.$store.dispatch('saveCartCount',res.cartTotalQuantity);
+        this.$store.dispatch('saveCartCount',res.cartTotalQuantity);  //派发，计算购物车数量
         // this.$router.push('/cart');
       });
     }

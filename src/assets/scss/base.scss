@@ -17,14 +17,14 @@ input{  //应用于所有的input
   box-sizing: border-box;
   font-size: 14px;
 }
-.fl{
+.fl{  //floatleft
   float: left;
 }
-.fr{
+.fr{  //floatright
   float: right;
 }
-.clearfix:before,.clearfix:after{
-  content:' ';
+.clearfix:before,.clearfix:after{ //清楚浮动
+  content:' ';  //伪类占位
   display:table;
 }
 .clearfix:after{
