@@ -5,6 +5,7 @@
         <a href="/#/index"></a>
       </div>
       <div class="title">
+        <!-- 为了组件复用，这里的标题设一个插槽 -->
         <h2>{{title}}<slot name="tip"></slot></h2>
       </div>
       <div class="username">

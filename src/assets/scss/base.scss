@@ -30,9 +30,9 @@ input{  //应用于所有的input
 .clearfix:after{
   clear: both;
 }
-// 公共logo
+
 //图片动画——其实是两张图片
-.header-logo{
+.header-logo{ // 公共logo
   display:inline-block;
   width:55px;
   height:55px;
