@@ -2,6 +2,7 @@
   <div class="product">
     <product-param v-bind:title="product.name">
       <!-- 插入Product-param组件的buy插槽 -->
+      <!-- 虽然通过插槽插入了ProductParam.vue，但是购买按钮还是属于product.vue，所以定义'buy'方法还是在本组件 -->
       <template v-slot:buy>
         <button class="btn" @click="buy">立即购买</button>
       </template>
@@ -86,7 +87,7 @@
     },
     methods:{
       getProductInfo(){
-        let id = this.$route.params.id;
+        let id = this.$route.params.id; //从params里获得id号
         this.axios.get(`/products/${id}`).then((res)=>{
           this.product = res;
         })
@@ -98,7 +99,7 @@
       closeVideo(){
         this.showSlide='slideUp';
         setTimeout(()=>{
-          this.showSlide='';  //动画结束后再次将showSlide置为空
+          this.showSlide='';  //动画结束后再次将showSlide置为空 //过600ms后视频框的v-show会变为false
         },600)
       }
     }

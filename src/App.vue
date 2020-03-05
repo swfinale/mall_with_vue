@@ -23,7 +23,7 @@ export default {
   },
   methods:{
     getUser(){  //拉取用户信息
-      this.axios.get('/user').then((res={})=>{
+      this.axios.get('/user').then((res={})=>{  //给res一个默认值，防止报错
         this.$store.dispatch('saveUserName',res.username);  //保存到vuex
       })
     },

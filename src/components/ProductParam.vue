@@ -22,7 +22,7 @@
   export default{
     name:'nav-bar',
     props:{
-      title:String
+      title:String  //接收product.vue里传过来的'title'
     },
     data(){
       return {
