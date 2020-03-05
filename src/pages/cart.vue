@@ -19,11 +19,13 @@
             <li class="col-1">操作</li>
           </ul>
           <ul class="cart-item-list">
+            <!-- 绑定一个key做缓存可以效率高一点 -->
             <li class="cart-item" v-for="(item,index) in list" v-bind:key="index">
               <div class="item-check">
                 <span class="checkbox" v-bind:class="{'checked':item.productSelected}"  @click="updateCart(item)"></span>
               </div>
               <div class="item-name">
+                <!-- 图片懒加载 -->
                 <img v-lazy="item.productMainImage" alt="">
                 <span>{{item.productName + ' , ' + item.productSubtitle}}</span>
               </div>
@@ -130,7 +132,7 @@
         this.list = res.cartProductVoList || [];
         this.allChecked = res.selectedAll;
         this.cartTotalPrice = res.cartTotalPrice;
-        this.checkedNum = this.list.filter(item=>item.productSelected).length;
+        this.checkedNum = this.list.filter(item=>item.productSelected).length;  //过滤，只统计选中的
       },
       // 购物车下单
       order(){

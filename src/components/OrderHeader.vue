@@ -22,7 +22,7 @@
       title:String
     },
     computed:{
-      ...mapState(['username'])
+      ...mapState(['username']) //通过计算属性导入用户参数
     },
   }
 </script>
