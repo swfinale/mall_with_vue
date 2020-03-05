@@ -32,6 +32,7 @@
               <div class="item-price">{{item.productPrice}}</div>
               <div class="item-num">
                 <div class="num-box">
+                  <!-- 给updateCart传参 -->
                   <a href="javascript:;" @click="updateCart(item,'-')">-</a>
                   <span>{{item.quantity}}</span>
                   <a href="javascript:;"  @click="updateCart(item,'+')">+</a>
@@ -136,7 +137,7 @@
       },
       // 购物车下单
       order(){
-        let isCheck = this.list.every(item=>!item.productSelected);
+        let isCheck = this.list.every(item=>!item.productSelected);//Array.prototype.every()——测试一个数组内的所有元素是否都能通过某个指定函数的测试。它返回一个布尔值
         if(isCheck){
           this.$message.warning('请选择一件商品');
         }else{
