@@ -44,7 +44,7 @@
         <div class="video-box" v-show="showSlide">
           <!-- 遮罩 -->
           <div class="overlay"></div>
-          <!-- 视频组件 -->
+          <!-- 视频组件 animation3：动态绑定了"showSlide"样式（默认为空），通过修改showSlide为slideUp或slideDown来实现动画-->
           <div class="video" v-bind:class="showSlide">
             <span class="icon-close" @click="closeVideo"></span>
             <!-- 视频框 -->
@@ -67,9 +67,9 @@
     },
     data(){
       return {
-        showSlide:'',//控制动画效果
+        showSlide:'',//控制视频框动画效果
         product:{},//商品信息
-        swiperOption:{
+        swiperOption:{  //swiper参数
           autoplay:true,
           slidesPerView:3,
           spaceBetween: 30,
@@ -98,7 +98,7 @@
       closeVideo(){
         this.showSlide='slideUp';
         setTimeout(()=>{
-          this.showSlide='';
+          this.showSlide='';  //动画结束后再次将showSlide置为空
         },600)
       }
     }
@@ -191,7 +191,7 @@
             opacity:.4; //透明度
             z-index:10;
           }
-          @keyframes slideDown{
+          @keyframes slideDown{ //animation1：@keyframes定义slideDown动画//animation要比transition复杂很多，一般简单的就用transition
             from{
               top:-50%;
               opacity:0;
@@ -220,7 +220,7 @@
             width:1000px;
             height:536px;
             opacity:1;
-            &.slideDown{
+            &.slideDown{  //animation2：在这里指定slideDown和slideUp
               animation:slideDown .6s linear;
               top:50%;
             }
