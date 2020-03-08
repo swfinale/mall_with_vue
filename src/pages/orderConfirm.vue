@@ -36,6 +36,7 @@
                 <div class="street">{{item.receiverProvince + ' ' + item.receiverCity + ' ' + item.receiverDistrict + ' ' + item.receiverAddress}}</div>
                 <div class="action">
                   <a href="javascript:;" class="fl" @click="delAddress(item)">
+                    <!-- 矢量图，用svg替换icon，可以减少请求，优化性能 -->
                     <svg class="icon icon-del">
                       <use xlink:href="#icon-del"></use>
                     </svg>
@@ -58,6 +59,7 @@
             <ul>
               <li v-for="(item,index) in cartList" :key="index">
                 <div class="good-name">
+                  <!-- 图片懒加载 -->
                   <img v-lazy="item.productMainImage" alt="">
                   <span>{{item.productName + ' ' + item.productSubtitle}}</span>
                 </div>
@@ -104,6 +106,7 @@
         </div>
       </div>
     </div>
+    <!-- 新增地址的弹框 -->
     <modal
       title="新增确认"
       btnType="1"
@@ -210,13 +213,16 @@ export default{
     },
     // 地址删除、编辑、新增功能
     submitAddress(){
-      let {checkedItem,userAction} = this;
+      let {checkedItem,userAction} = this;  //this的解构语法
       let method,url,params={};
       if(userAction == 0){
+        //新增发post
         method = 'post',url = '/shippings';
       }else if(userAction == 1){
+        //更新发put
         method = 'put',url = `/shippings/${checkedItem.id}`;
       }else {
+        //删除发delete
         method = 'delete',url = `/shippings/${checkedItem.id}`;
       }
       if(userAction == 0 || userAction ==1){
@@ -249,13 +255,14 @@ export default{
           receiverZip
         }
       }
+      //[]可以代替'.'，从而实现不同method的axios
       this.axios[method](url,params).then(()=>{
         this.closeModal();
-        this.getAddressList();
+        this.getAddressList();  //重新拉取一次
         this.$message.success('操作成功');
       });
     },
-    closeModal(){
+    closeModal(){ //关闭弹框
       this.checkedItem = {};
       this.userAction = '';
       this.showDelModal = false;
@@ -263,9 +270,10 @@ export default{
     },
     getCartList(){
       this.axios.get('/carts').then((res)=>{
-        let list = res.cartProductVoList;//获取购物车中所有商品数据
-        this.cartTotalPrice = res.cartTotalPrice;//商品总金额
-        this.cartList = list.filter(item=>item.productSelected);
+        let list = res.cartProductVoList;
+        this.cartTotalPrice = res.cartTotalPrice;
+        this.cartList = list.filter(item=>item.productSelected);  //选中productSelected为true的
+        // 遍历
         this.cartList.map((item)=>{
           this.count += item.quantity;
         })
