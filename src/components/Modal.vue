@@ -8,9 +8,11 @@
           <a href="javascript:;" class="icon-close" v-on:click="$emit('cancel')"></a>
         </div>
         <div class="modal-body">
+          <!-- 表单体 -->
           <slot name="body"></slot>
         </div>
         <div class="modal-footer">
+          <!-- 子组件通过$emit('submit')触发父组件的@submit -->
           <a href="javascript:;" class="btn" v-if="btnType==1" v-on:click="$emit('submit')">{{sureText}}</a>
           <a href="javascript:;" class="btn" v-if="btnType==2" v-on:click="$emit('cancel')">{{cancelText}}</a>
           <div class="btn-group" v-if="btnType==3">

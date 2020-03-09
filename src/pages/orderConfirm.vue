@@ -30,6 +30,7 @@
           <div class="item-address">
             <h2 class="addr-title">收货地址</h2>
             <div class="addr-list clearfix">
+              <!-- 动态添加选中时的样式 -->
               <div class="addr-info" :class="{'checked':index == checkIndex}" @click="checkIndex=index" v-for="(item,index) in list" :key="index">
                 <h2>{{item.receiverName}}</h2>
                 <div class="phone">{{item.receiverMobile}}</div>
@@ -114,6 +115,7 @@
       @cancel="showEditModal=false"
       @submit="submitAddress"
     >
+      <!-- 编辑表单体 -->
       <template v-slot:body>
         <div class="edit-wrap">
           <div class="item">
@@ -196,11 +198,11 @@ export default{
     },
     // 打开新增地址弹框
     openAddressModal(){
-      this.userAction = 0;
+      this.userAction = 0;  //0为新增
       this.checkedItem = {};
       this.showEditModal = true;
     },
-    // 打开新增地址弹框
+    // 编辑新增地址弹框
     editAddressModal(item){
       this.userAction = 1;
       this.checkedItem = item;
@@ -255,7 +257,7 @@ export default{
           receiverZip
         }
       }
-      //[]可以代替'.'，从而实现不同method的axios
+      // []可以代替'.'，从而实现不同method的axios
       this.axios[method](url,params).then(()=>{
         this.closeModal();
         this.getAddressList();  //重新拉取一次
@@ -290,8 +292,9 @@ export default{
         shippingId:item.id
       }).then((res)=>{
         this.$router.push({
+          // 可以指定path，也可以指定router里定义的name
           path:'/order/pay',
-          query:{
+          query:{ //指定参数
             orderNo:res.orderNo
           }
         })
@@ -458,13 +461,13 @@ export default{
       .item{
         margin-bottom:15px;
         .input{
-          display:inline-block;
+          display:inline-block; //只要宽度允许就会并排排列。注意box-sizing:border-box
           width:283px;
           height:40px;
           line-height:40px;
           padding-left:15px;
           border:1px solid #E5E5E5;
-          &+.input{
+          &+.input{ //定义兄弟元素
             margin-left:14px;
           }
         }
