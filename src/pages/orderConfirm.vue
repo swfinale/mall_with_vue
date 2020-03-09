@@ -1,6 +1,7 @@
 <template>
   <div class="order-confirm">
     <order-header title="订单确认">
+      <!-- 传到子组件name为tip的slot中 -->
       <template v-slot:tip>
         <span>请认真填写收货地址</span>
       </template>
@@ -294,7 +295,7 @@ export default{
         this.$router.push({
           // 可以指定path，也可以指定router里定义的name
           path:'/order/pay',
-          query:{ //指定参数
+          query:{ //指定参数，是明文的
             orderNo:res.orderNo
           }
         })

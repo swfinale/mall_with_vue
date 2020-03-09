@@ -38,6 +38,7 @@
                   </div>
                 </div>
               </div>
+              <!-- 用v-if v-else的结构，显示订单已支付/未支付 -->
               <div class="good-state fr" v-if="order.status == 20">
                 <a href="javascript:;">{{order.statusDesc}}</a>
               </div>
